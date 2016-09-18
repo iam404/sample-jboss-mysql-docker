@@ -1,0 +1,13 @@
+FROM ubuntu:14.04
+MAINTAINER prabuddha <prabuddha.nike13@gmail.com>
+
+RUN (apt-get update && DEBIAN_Frontend=noninteractive apt-get install -y default-jre default-jdk openjdk-7-jre openjdk-7-jdk python-software-properties curl vim wget)
+
+RUN cd $HOME && wget http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.tar.gz && tar xfvz jboss-as-7.1.1.Final.tar.gz && mv jboss-as-7.1.1.Final /opt/jboss
+RUN sed -i "/bind-address/#bind-address" /etc/mysql/my.cnf
+ADD . /src
+RUN cp /src/app.war /opt/jboss/standalone/deployments/
+EXPOSE 8080
+
+
+CMD ["/opt/jboss/bin/standalone.sh", "-b", "0.0.0.0"]
