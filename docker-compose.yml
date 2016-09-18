@@ -1,10 +1,12 @@
-web:
-  image: sample/jboss
-  links:
-    - db
-  ports:
-    - "8080:8080"
-db:
-  image: sample/mysql
-  ports:
-    - "3306:3306"
+version: '2'
+services:
+ jboss:
+   image: sample/jboss
+   links:
+     - db
+   ports:
+     - "8080:8080"
+ db:
+   image: sample/mysql
+   ports:
+     - "3306:3306"
