@@ -9,4 +9,4 @@
  
 ###Step 3: Create a container with Jboss & Mysql linked###
  
- docker-compose up
+ docker-compose up -d
